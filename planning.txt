@@ -1,0 +1,11 @@
+Make the show, index, and new page for boards.
+Next, add lists to the boards.
+Then, add cards to the lists.
+Then, add drag and drop functionality.
+Then, make the card view modal.
+
+Board Page
+api_board GET    /api/boards/:id(.:format)                 api/boards#show {:format=>:json}
+                    PATCH  /api/boards/:id(.:format)                 api/boards#update {:format=>:json}
+                    PUT    /api/boards/:id(.:format)                 api/boards#update {:format=>:json}
+                    DELETE /api/boards/:id(.:format)                 api/boards#destroy {:format=>:json}

@@ -1,0 +1,9 @@
+<h1>SHOWING!</h1>
+
+
+<%= board.get('title') %>
+<ul>
+<% board.lists.each(function(list){ %>
+     <li><%= list.get('title') %></li>
+<% }); %>
+</ul>
