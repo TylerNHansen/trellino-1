@@ -12,4 +12,9 @@ window.Trellino.Views.boardIndex = Backbone.View.extend({
     return this;
   },
 
+  leave: function () {
+    this.remove();
+  },
+
+
 })

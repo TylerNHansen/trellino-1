@@ -24,7 +24,9 @@ Trellino.Views.boardNew = Backbone.View.extend({
     this.trigger('submit', board);
   },
 
-
+  leave: function () {
+    this.remove();
+  },
 
 
 })

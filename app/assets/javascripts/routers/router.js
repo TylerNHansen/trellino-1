@@ -1,7 +1,6 @@
 Trellino.Routers.router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl
-
   },
 
 
@@ -9,6 +8,7 @@ Trellino.Routers.router = Backbone.Router.extend({
     '': 'boardIndex',
     'boards/new': 'boardNew',
     'boards/:id': 'boardShow',
+    'boards/:board_id/lists/new': "listNew",
   },
   boardIndex: function () {
     var indexView = new Trellino.Views.boardIndex({
@@ -38,12 +38,18 @@ Trellino.Routers.router = Backbone.Router.extend({
         id: id,
       })
     })
+
+    this.listenTo(showView, 'deleteMe', function (objToDel) {
+      objToDel.destroy();
+      this.navigate('');
+      this.boardIndex();
+    })
     this._swapView(showView);
   },
 
   _swapView: function (view) {
     if(this._currentView){
-      this._currentView.remove();
+      this._currentView.leave();
     }
     this._currentView = view;
     this.$rootEl.html(view.render().$el);

@@ -24,6 +24,7 @@ window.Trellino = {
         success: function () { collection.add(model); }
       });
     }
+
     return model;
   },
 

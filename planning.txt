@@ -9,3 +9,22 @@ api_board GET    /api/boards/:id(.:format)                 api/boards#show {:for
                     PATCH  /api/boards/:id(.:format)                 api/boards#update {:format=>:json}
                     PUT    /api/boards/:id(.:format)                 api/boards#update {:format=>:json}
                     DELETE /api/boards/:id(.:format)                 api/boards#destroy {:format=>:json}
+
+Okay, so the issue I'm having is that I don't have a coherent plan
+for nesting lists under a board. I think the general idea is something
+like "lists have a board, and boards have a list", so either can
+talk about the other.
+
+Specific issues are with lists not loading properly.
+
+I think I want an event-driven structure. Not sure.
+
+Part of the thing is that the API is always sending out enough stuff
+to populate everything recursively, but I don't have things set up to
+eat all the data. It probably makes a *ton* more sense for a single-page
+website. Maybe refactor to have everything as a single-page site?
+
+KILL THE ROUTER PLAN:
+  nuke everything off it save for the root page. Root page has control
+  elements that bring up and display views. Maybe have a router for
+  the login page as well.
