@@ -2,10 +2,7 @@
 
 
 <%= board.get('title') %>
-<ul>
-<% board.lists().each(function(list){ %>
-     <li><%= list.get('title') %></li>
-<% }); %>
-</ul>
+
+<div id='lists'></div>
 
 <button type='button' class='btn btn-default' id='deleteBoard'>Delete</button>

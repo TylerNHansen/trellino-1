@@ -1,3 +1,4 @@
+// $rootEl = div id='content' / $('#content') in root.html.erb
 Trellino.Routers.router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl
@@ -22,7 +23,6 @@ Trellino.Routers.router = Backbone.Router.extend({
     })
     this.listenTo(newView, 'submit', function (board) {
       this.listenTo(board, 'sync', function () {
-        debugger
         this.navigate('boards/' + board.id, {trigger: true});
       })
     })
