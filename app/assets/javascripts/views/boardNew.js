@@ -19,8 +19,7 @@ Trellino.Views.boardNew = Backbone.View.extend({
     var board = new Trellino.Models.Board({
       title: title
     });
-    this.collection.add(board);
-    board.save();
+    board.save()
     this.trigger('submit', board);
   },
 

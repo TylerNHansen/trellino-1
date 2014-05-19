@@ -1,6 +1,6 @@
 window.Trellino.Views.boardIndex = Backbone.View.extend({
   initialize: function (options) {
-    this.listenTo(this.collection, 'reset add', this.render);
+    this.listenTo(this.collection, 'reset add remove destroy', this.render);
     this.collection.fetch();
   },
 

@@ -3,7 +3,7 @@
 
 <%= board.get('title') %>
 <ul>
-<% board.lists.each(function(list){ %>
+<% board.lists().each(function(list){ %>
      <li><%= list.get('title') %></li>
 <% }); %>
 </ul>

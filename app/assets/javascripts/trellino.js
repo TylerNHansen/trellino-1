@@ -4,11 +4,23 @@ window.Trellino = {
   Views: {},
   Routers: {},
   initialize: function () {
-    Trellino.boards = new Trellino.Collections.Boards();
-    Trellino.router = new Trellino.Routers.router({
+    this.boards();
+    this._router = new Trellino.Routers.router({
       $rootEl: $('#content')
     });
     Backbone.history.start();
+  },
+
+  boards: function () {
+    if(!this._boards){
+      this._boards = new Trellino.Collections.Boards();
+      this._boards.fetch();
+    }
+    return this._boards
+  },
+
+  router: function () {
+    return this._router;
   },
 
   getOrFetch: function (options) {

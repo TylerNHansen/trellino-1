@@ -12,37 +12,34 @@ Trellino.Routers.router = Backbone.Router.extend({
   },
   boardIndex: function () {
     var indexView = new Trellino.Views.boardIndex({
-      collection: Trellino.boards
+      collection: Trellino.boards()
     })
     this._swapView(indexView);
   },
   boardNew: function () {
     var newView = new Trellino.Views.boardNew({
-      collection: Trellino.boards
+      collection: Trellino.boards()
     })
     this.listenTo(newView, 'submit', function (board) {
       this.listenTo(board, 'sync', function () {
-        this.navigate('boards/' + board.id);
-        this.boardShow(board.id);
+        debugger
+        this.navigate('boards/' + board.id, {trigger: true});
       })
     })
     this._swapView(newView);
   },
   boardShow: function (id) {
-    var boards = Trellino.boards;
-    var Board = Trellino.Models.Board
     var showView = new Trellino.Views.boardShow({
       model: Trellino.getOrFetch({
-        collection: boards,
-        Model: Board,
+        collection: Trellino.boards(),
+        Model: Trellino.Models.Board,
         id: id,
       })
     })
 
     this.listenTo(showView, 'deleteMe', function (objToDel) {
       objToDel.destroy();
-      this.navigate('');
-      this.boardIndex();
+      this.navigate('', {trigger: true});
     })
     this._swapView(showView);
   },

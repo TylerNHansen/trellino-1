@@ -1,10 +1,7 @@
 window.Trellino.Views.boardShow = Backbone.View.extend({
   initialize: function (options) {
-    board = this.model
-    board.lists = (this.model.lists || new Trellino.Collections.Lists(board))
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.model.lists, 'sync', this.render);
-    board.fetch();
+    this.listenTo(this.model.lists(), 'sync', this.render);
   },
 
   events: {
