@@ -1,9 +1,10 @@
-Trellino.Views.listNew = Backbone.View.extend({
+Trellino.Views.ListNew = Backbone.View.extend({
   initialize: function (options) {
   },
 
   events: {
-    "click #submit-list": "submitList",
+    "click .new-list-btn": "submitList",
+    'submit': 'submitList',
   },
 
   template: JST['listNew'],
@@ -15,13 +16,11 @@ Trellino.Views.listNew = Backbone.View.extend({
 
   submitList: function (event) {
     event.preventDefault();
-    var title = $('#listData').val();
+    var title = $('.list-title').val();
     var list = new Trellino.Models.List({
       title: title
     });
-    this.collection.add(list);
-    list.save();
-    this.trigger('submit', list);
+    this.trigger('addThisList', list);
   },
 
   leave: function () {

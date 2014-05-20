@@ -15,7 +15,7 @@ window.Trellino.Models.Board = Backbone.Model.extend({
   // since this has a nested list in the model, need to over-write parse
   parse: function (resp) {
     if(resp.lists){
-      this.lists().set(resp.lists);
+      this.lists().set(resp.lists, {parse: true});
       delete resp.lists
     }
     return resp;

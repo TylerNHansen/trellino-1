@@ -22,8 +22,11 @@ window.Trellino.Views.boardShow = Backbone.View.extend({
     if(this.listsView){
       this.listsView.leave();
     }
-    this.listsView = new Trellino.Views.listsForBoard({lists: this.model.lists()} );
+    this.listsView = new Trellino.Views.ListsForBoard({lists: this.model.lists()} );
     this.$el.find('#lists').html(this.listsView.render().$el);
+    this.listNewView = new Trellino.Views.ListNew();
+    this.listenTo(this.listNewView, 'addThisList', this.addList);
+    this.$el.append(this.listNewView.render().$el);
     return this;
   },
 
@@ -32,8 +35,15 @@ window.Trellino.Views.boardShow = Backbone.View.extend({
     this.trigger('deleteMe', this.model);
   },
 
+  addList: function (list) {
+    list.set('board', this.model);
+    this.model.lists().add(list);
+    list.save();
+  },
+
   leave: function () {
-    this.listsView.leave();
+    if(this.listsView) this.listsView.leave();
+    if(this.listNewView) this.listNewView.leave();
     this.remove();
   },
 
